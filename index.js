@@ -12,6 +12,15 @@ function charNumber(str) {
   return noSpaces.length;
 }
 
+function charNumberRgx(str) {
+  const cleanedText = str.replace(/[\s\p{P}]/gu, "");
+  console.log(cleanedText.length); 
+}
+
+///////////////////      [\s\p{P}]
+
+
+
 function wordNumber(str) {
 
   return str.trim()
@@ -27,6 +36,8 @@ function wordNumberRgx(str){
   const words = str.match(rgx);
   return words.length;
 }
+////////////////////////
+
 
 function wordCount(str) {
 
@@ -72,6 +83,32 @@ function wordCount(str) {
 
 }
 
+function wordCountRgx(text) {
+  
+  const cleanedText = text.toLowerCase().replace(/\b[\p{L}\p{N}']+\b/gu, " ").trim();   //non mi piaceva /[^\wÀ-ÿ']+/gu
+
+  
+  const words = cleanedText.split(" ");
+
+  
+  const frequencyMap = {};
+
+  words.forEach(word => {
+      if (word) { 
+          // frequencyMap[word] = (frequencyMap[word] || 0) + 1;   meno leggibile
+          if (!frequencyMap[word]) {
+            frequencyMap[word] = 1;
+        } else {
+            frequencyMap[word]++;
+        }
+      }
+  });
+
+  return frequencyMap;
+}
+
+
+
 
 const incipit = `Quel ramo del lago di Como, che volge a mezzogiorno, tra due
 catene non interrotte di monti, tutto a seni e a golfi, a seconda
@@ -109,13 +146,24 @@ const cNumb = charNumber(incipit)
 console.log(cNumb); //number
 
 
-const wNumb = wordNumber(incipit)
-console.log(wNumb); //number
+const cNumbR = charNumberRgx(incipit)
+console.log(cNumbR); //number
 
 
-const wCount = wordCount(incipit)
-console.log(wCount); //{parola: numero di occorrenze}
+
+// const wNumb = wordNumber(incipit)
+// console.log(wNumb); //number
+
+// const wNumb2 = wordNumberRgx(incipit)
+// console.log(wNumb2); //number
 
 
-const wNumb2 = wordNumberRgx(incipit)
-console.log(wNumb2); //number
+// const wCount = wordCount(incipit)
+// console.log(wCount); //{parola: numero di occorrenze}
+
+
+const wCountRgx = wordCountRgx(incipit)
+console.log(wCountRgx); //{parola: numero di occorrenze}
+
+
+
