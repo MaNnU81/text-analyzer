@@ -20,12 +20,12 @@ Vino rosso;1;Enoteca`
 function objectList(str) {
     return str.split("\n").map(item => {
         const match = item.match(/^(.+);(\d+);(.+)$/);
-        if (!match) return null; // Se la riga non è valida, la ignora
+        if (!match) return null; 
 
         let [_, nome, quantita, provenienza] = match; 
 
         return { nome, quantita: Number(quantita), provenienza };
-    }).filter(item => item !== null); // Rimuove i nulli
+    }).filter(item => item !== null); 
 }
 
 const listaO = objectList(lista);
@@ -43,7 +43,7 @@ function objectListSuper(str) {
 
         return { nome, quantita: Number(quantita), provenienza };
     }).filter(item => item !== null) 
-      .filter(item => item.provenienza === "Supermercato");
+    //   .filter(item => item.provenienza === "Supermercato");
 }
 
 const listaSupermercato = objectListSuper(lista);
@@ -66,7 +66,7 @@ function objectListWhere(str, provenienza) {
 
 const where = "SUperMercato";
 const objList = objectListWhere(lista)
-console.log(objList);
+// console.log(objList);
 
 //4) creare una funzione che, partendo da lista e da un array di keys, ritorni un array di oggetti: {keys[0]: value, keys[1]: value, keys[2]: value}
 
@@ -89,7 +89,7 @@ function nameList(str, keys) {
 
 const nomi = ["comprare", "quanti", "dove"];
 const named = nameList(lista, nomi);
-console.log(named);
+// console.log(named);
 
 
 
